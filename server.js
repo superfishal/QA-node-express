@@ -1,11 +1,10 @@
 "use strict";
 require("dotenv").config();
 const express = require("express");
-const session = require("express-session");
-const passport = require("passport");
 const myDB = require("./connection");
 const fccTesting = require("./freeCodeCamp/fcctesting.js");
-
+const session = require("express-session");
+const passport = require("passport");
 const app = express();
 app.set("view engine", "pug");
 
@@ -22,6 +21,7 @@ app.use(
   })
 );
 app.use(passport.initialize());
+app.use(passport.session());
 app.route("/").get((req, res) => {
   // Change the response to render the Pug template
   res.render(process.cwd() + "/views/pug/index", {
